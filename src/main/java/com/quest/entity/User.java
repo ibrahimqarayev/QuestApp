@@ -1,4 +1,4 @@
-package com.quest.entities;
+package com.quest.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
