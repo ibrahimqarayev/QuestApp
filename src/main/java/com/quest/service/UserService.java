@@ -10,7 +10,7 @@ public interface UserService {
 
     User saveOneUser(User newUser);
 
-    User getOneUser(Long userId);
+    User getOneUserById(Long userId);
 
     User updateOneUser(Long userId, User newUser);
 
