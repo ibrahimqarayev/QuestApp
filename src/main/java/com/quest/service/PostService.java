@@ -2,6 +2,7 @@ package com.quest.service;
 
 import com.quest.entity.Post;
 import com.quest.request.PostCreateRequest;
+import com.quest.request.PostUpdateRequest;
 
 import java.util.List;
 import java.util.Optional;
@@ -12,5 +13,9 @@ public interface PostService {
 
     Post getOnePostById(Long postId);
 
-    Post createOnePost(PostCreateRequest postCreateRequest);
+    Post createOnePost(PostCreateRequest createPost);
+
+    void deleteOnePostById(Long postId);
+
+    Post updateOnePost(Long postId, PostUpdateRequest updatePost);
 }
