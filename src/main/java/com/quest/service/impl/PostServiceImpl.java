@@ -3,8 +3,8 @@ package com.quest.service.impl;
 import com.quest.entity.Post;
 import com.quest.entity.User;
 import com.quest.repository.PostRepository;
-import com.quest.request.PostCreateRequest;
-import com.quest.request.PostUpdateRequest;
+import com.quest.request.post.PostCreateRequest;
+import com.quest.request.post.PostUpdateRequest;
 import com.quest.service.PostService;
 import com.quest.service.UserService;
 import org.springframework.stereotype.Service;
@@ -38,7 +38,7 @@ public class PostServiceImpl implements PostService {
 
     @Override
     public Post createOnePost(PostCreateRequest createPost) {
-        User user = userService.getOneUser(createPost.getUserId());
+        User user = userService.getOneUserById(createPost.getUserId());
         if (user == null)
             return null;
         Post toSave = new Post();
