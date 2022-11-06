@@ -1,6 +1,7 @@
 package com.quest.controller;
 
 import com.quest.entity.Post;
+import com.quest.request.PostCreateRequest;
 import com.quest.service.PostService;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,9 +22,16 @@ public class PostController {
         return postService.getAllPosts(userId);
     }
 
+
     @GetMapping("/{postId}")
     public Post getOnePost(@PathVariable Long postId) {
         return postService.getOnePostById(postId);
+    }
+
+    @PostMapping
+    public Post createOnePost(@RequestBody PostCreateRequest newPostRequest) {
+        return postService.createOnePost(newPostRequest);
+
     }
 
 }
