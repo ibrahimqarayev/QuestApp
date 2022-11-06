@@ -1,11 +1,10 @@
 package com.quest.controller;
 
 import com.quest.entity.Comment;
+import com.quest.request.comment.CommentCreateRequest;
+import com.quest.request.comment.CommentUpdateRequest;
 import com.quest.service.CommentService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -20,6 +19,29 @@ public class CommentController {
         this.commentService = commentService;
     }
 
+    @GetMapping
+    public List<Comment> getAllComment(Optional<Long> userId, Optional<Long> postId) {
+        return commentService.getCommentWithParam(userId, postId);
+    }
 
+    @GetMapping("/{commentId}")
+    public Comment getOneComment(@PathVariable Long commentId) {
+        return commentService.getOneCommentById(commentId);
+    }
+
+    @PostMapping
+    public Comment createOneComment(@RequestBody CommentCreateRequest createComment) {
+        return commentService.createOneComment(createComment);
+    }
+
+    @PutMapping("/{commentId}")
+    public Comment updateOneComment(@PathVariable Long commentId, @RequestBody CommentUpdateRequest updateRequest) {
+        return commentService.updateOneComment(commentId, updateRequest);
+    }
+
+    @DeleteMapping("/{commentId}")
+    public void deleteOneComment(@PathVariable Long commentId) {
+        commentService.deleteOneCommentById(commentId);
+    }
 
 }
