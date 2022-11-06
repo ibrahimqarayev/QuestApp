@@ -4,6 +4,7 @@ import com.quest.entity.Post;
 import com.quest.entity.User;
 import com.quest.repository.PostRepository;
 import com.quest.request.PostCreateRequest;
+import com.quest.request.PostUpdateRequest;
 import com.quest.service.PostService;
 import com.quest.service.UserService;
 import org.springframework.stereotype.Service;
@@ -36,16 +37,34 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
-    public Post createOnePost(PostCreateRequest newPostRequest) {
-        User user = userService.getOneUser(newPostRequest.getUserId());
+    public Post createOnePost(PostCreateRequest createPost) {
+        User user = userService.getOneUser(createPost.getUserId());
         if (user == null)
             return null;
         Post toSave = new Post();
-        toSave.setId(newPostRequest.getId());
-        toSave.setTitle(newPostRequest.getTitle());
-        toSave.setText(newPostRequest.getText());
+        toSave.setId(createPost.getId());
+        toSave.setTitle(createPost.getTitle());
+        toSave.setText(createPost.getText());
         toSave.setUser(user);
         return postRepository.save(toSave);
+    }
+
+    @Override
+    public void deleteOnePostById(Long postId) {
+        postRepository.deleteById(postId);
+    }
+
+    @Override
+    public Post updateOnePost(Long postId, PostUpdateRequest updatePost) {
+        Optional<Post> post = postRepository.findById(postId);
+        if (post.isPresent()) {
+            Post toUpdate = post.get();
+            toUpdate.setText(updatePost.getText());
+            toUpdate.setTitle(updatePost.getTitle());
+            postRepository.save(toUpdate);
+            return toUpdate;
+        }
+        return null;
     }
 
 
