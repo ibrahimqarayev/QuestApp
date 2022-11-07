@@ -1,7 +1,7 @@
 package com.quest.service;
 
 import com.quest.entity.Like;
-import com.quest.request.like.LikeCreateRequest;
+import com.quest.request.LikeCreateRequest;
 
 import java.util.List;
 import java.util.Optional;
