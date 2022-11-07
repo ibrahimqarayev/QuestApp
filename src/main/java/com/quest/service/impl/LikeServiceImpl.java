@@ -5,6 +5,7 @@ import com.quest.entity.Post;
 import com.quest.entity.User;
 import com.quest.repository.LikeRepository;
 import com.quest.request.LikeCreateRequest;
+import com.quest.response.LikeResponse;
 import com.quest.service.LikeService;
 import com.quest.service.PostService;
 import com.quest.service.UserService;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class LikeServiceImpl implements LikeService {
@@ -27,15 +29,17 @@ public class LikeServiceImpl implements LikeService {
     }
 
     @Override
-    public List<Like> getAllLikesWithParam(Optional<Long> postId, Optional<Long> userId) {
+    public List<LikeResponse> getAllLikesWithParam(Optional<Long> postId, Optional<Long> userId) {
+        List<Like> list;
         if (postId.isPresent() && userId.isPresent()) {
-            return likeRepository.findByPostIdAndUserId(postId, userId);
+            list = likeRepository.findByPostIdAndUserId(postId, userId);
         } else if (postId.isPresent()) {
-            return likeRepository.findByPostId(postId.get());
+            list = likeRepository.findByPostId(postId.get());
         } else if (userId.isPresent()) {
-            return likeRepository.findByUserId(userId.get());
+            list = likeRepository.findByUserId(userId.get());
         } else
-            return likeRepository.findAll();
+            list = likeRepository.findAll();
+        return list.stream().map(like -> new LikeResponse(like)).collect(Collectors.toList());
     }
 
     @Override
