@@ -1,16 +1,16 @@
 package com.quest.service.impl;
-
 import com.quest.entity.Post;
 import com.quest.entity.User;
 import com.quest.repository.PostRepository;
 import com.quest.request.post.PostCreateRequest;
 import com.quest.request.post.PostUpdateRequest;
+import com.quest.response.PostResponse;
 import com.quest.service.PostService;
 import com.quest.service.UserService;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class PostServiceImpl implements PostService {
@@ -23,12 +23,14 @@ public class PostServiceImpl implements PostService {
         this.userService = userService;
     }
 
-
     @Override
-    public List<Post> getAllPosts(Optional<Long> userId) {
-        if (userId.isPresent())
-            return postRepository.findByUserId(userId.get());
-        return postRepository.findAll();
+    public List<PostResponse> getAllPosts(Optional<Long> userId) {
+        List<Post> list;
+        if (userId.isPresent()) {
+            list = postRepository.findByUserId(userId.get());
+        } else
+            list = postRepository.findAll();
+        return list.stream().map(post -> new PostResponse(post)).collect(Collectors.toList());
     }
 
     @Override
