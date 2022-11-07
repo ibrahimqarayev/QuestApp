@@ -1,7 +1,12 @@
 package com.quest.controller;
+
+import com.quest.entity.Like;
+import com.quest.request.like.LikeCreateRequest;
 import com.quest.service.LikeService;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/likes")
@@ -14,5 +19,25 @@ public class LikeController {
     }
 
 
+    @GetMapping
+    public List<Like> getAllLikes(@RequestParam Optional<Long> postId, @RequestParam Optional<Long> userId) {
+        return likeService.getAllLikesWithParam(postId, userId);
+    }
+
+    @GetMapping("/{likeId}")
+    public Like getOneLike(@PathVariable Long likeId) {
+        return likeService.getOneLikeById(likeId);
+    }
+
+    @PostMapping
+    public Like createOneLike(@RequestBody LikeCreateRequest createLike){
+        return likeService.createOneLike(createLike);
+    }
+
+
+    @DeleteMapping("/{likeId}")
+    public void deleteOneLike(@PathVariable Long likeId) {
+        likeService.deleteOneLikeById(likeId);
+    }
 
 }
