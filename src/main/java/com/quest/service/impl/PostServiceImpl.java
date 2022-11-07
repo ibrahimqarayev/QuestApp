@@ -4,9 +4,12 @@ import com.quest.entity.User;
 import com.quest.repository.PostRepository;
 import com.quest.request.PostCreateRequest;
 import com.quest.request.PostUpdateRequest;
+import com.quest.response.LikeResponse;
 import com.quest.response.PostResponse;
+import com.quest.service.LikeService;
 import com.quest.service.PostService;
 import com.quest.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
@@ -17,10 +20,15 @@ public class PostServiceImpl implements PostService {
 
     private PostRepository postRepository;
     private UserService userService;
+    private LikeService likeService;
 
     public PostServiceImpl(PostRepository postRepository, UserService userService) {
         this.postRepository = postRepository;
         this.userService = userService;
+    }
+@Autowired
+    public void setLikeService(LikeService likeService) {
+        this.likeService = likeService;
     }
 
     @Override
@@ -30,7 +38,10 @@ public class PostServiceImpl implements PostService {
             list = postRepository.findByUserId(userId.get());
         } else
             list = postRepository.findAll();
-        return list.stream().map(post -> new PostResponse(post)).collect(Collectors.toList());
+        return list.stream().map(post -> {
+            List<LikeResponse> likes = likeService.getAllLikesWithParam(Optional.ofNullable(null), Optional.of(post.getId()));
+            return new PostResponse(post, likes);
+        }).collect(Collectors.toList());
     }
 
     @Override
