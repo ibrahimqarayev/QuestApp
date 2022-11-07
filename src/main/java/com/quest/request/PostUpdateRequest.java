@@ -1,4 +1,4 @@
-package com.quest.request.post;
+package com.quest.request;
 import lombok.Data;
 
 @Data
