@@ -1,6 +1,5 @@
 package com.quest.response;
 
-import com.quest.entity.Like;
 import com.quest.entity.Post;
 import lombok.Data;
 
