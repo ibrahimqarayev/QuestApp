@@ -1,4 +1,5 @@
 package com.quest.service.impl;
+
 import com.quest.entity.Post;
 import com.quest.entity.User;
 import com.quest.repository.PostRepository;
@@ -11,6 +12,7 @@ import com.quest.service.PostService;
 import com.quest.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -26,7 +28,8 @@ public class PostServiceImpl implements PostService {
         this.postRepository = postRepository;
         this.userService = userService;
     }
-@Autowired
+
+    @Autowired
     public void setLikeService(LikeService likeService) {
         this.likeService = likeService;
     }
