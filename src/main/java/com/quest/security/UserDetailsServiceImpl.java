@@ -1,4 +1,4 @@
-package com.quest.service;
+package com.quest.security;
 
 import com.quest.entity.User;
 import com.quest.repository.UserRepository;
