@@ -2,7 +2,6 @@ package com.quest.security;
 
 import com.quest.entity.User;
 import com.quest.repository.UserRepository;
-import com.quest.security.JwtUserDetails;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
