@@ -1,4 +1,4 @@
-package com.quest.response;
+package com.quest.dto.response;
 
 import com.quest.entity.Like;
 import lombok.Data;

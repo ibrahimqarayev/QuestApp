@@ -1,8 +1,8 @@
 package com.quest.controller;
 import com.quest.entity.Post;
-import com.quest.request.PostCreateRequest;
-import com.quest.request.PostUpdateRequest;
-import com.quest.response.PostResponse;
+import com.quest.dto.request.PostCreateRequest;
+import com.quest.dto.request.PostUpdateRequest;
+import com.quest.dto.response.PostResponse;
 import com.quest.service.PostService;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;

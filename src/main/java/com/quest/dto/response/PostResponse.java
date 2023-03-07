@@ -1,4 +1,4 @@
-package com.quest.response;
+package com.quest.dto.response;
 
 import com.quest.entity.Post;
 import lombok.Data;

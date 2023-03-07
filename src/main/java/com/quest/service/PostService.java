@@ -1,9 +1,9 @@
 package com.quest.service;
 
 import com.quest.entity.Post;
-import com.quest.request.PostCreateRequest;
-import com.quest.request.PostUpdateRequest;
-import com.quest.response.PostResponse;
+import com.quest.dto.request.PostCreateRequest;
+import com.quest.dto.request.PostUpdateRequest;
+import com.quest.dto.response.PostResponse;
 
 import java.util.List;
 import java.util.Optional;

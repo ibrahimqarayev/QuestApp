@@ -1,7 +1,7 @@
 package com.quest.service;
 import com.quest.entity.Comment;
-import com.quest.request.CommentCreateRequest;
-import com.quest.request.CommentUpdateRequest;
+import com.quest.dto.request.CommentCreateRequest;
+import com.quest.dto.request.CommentUpdateRequest;
 import org.springframework.web.bind.annotation.RequestParam;
 import java.util.List;
 import java.util.Optional;

@@ -1,8 +1,8 @@
 package com.quest.service;
 
 import com.quest.entity.Like;
-import com.quest.request.LikeCreateRequest;
-import com.quest.response.LikeResponse;
+import com.quest.dto.request.LikeCreateRequest;
+import com.quest.dto.response.LikeResponse;
 
 import java.util.List;
 import java.util.Optional;
