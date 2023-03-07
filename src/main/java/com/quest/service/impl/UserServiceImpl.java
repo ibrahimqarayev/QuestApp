@@ -40,6 +40,7 @@ public class UserServiceImpl implements UserService {
             User foundUser = user.get();
             foundUser.setUserName(newUser.getUserName());
             foundUser.setPassword(newUser.getPassword());
+            foundUser.setAvatar(newUser.getAvatar());
             return foundUser;
         } else
             return null;

@@ -1,3 +1,1 @@
 # QuestApp
-- Backend +
-- Frontend (unfinished)
